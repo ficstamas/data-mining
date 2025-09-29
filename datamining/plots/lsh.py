@@ -64,6 +64,10 @@ def plot_sensitivity_lsh():
     plt.show()
 
 
+@interact(
+    r=widgets.IntSlider(min=1, max=10, step=1, value=3),
+    b=widgets.IntSlider(min=1, max=10, step=1, value=5),
+)
 def plot_bands_and_rows(r=3, b=5):
     sim = np.arange(0, 1.01, 0.01)
     p = 1 - (1 - sim ** r) ** b
