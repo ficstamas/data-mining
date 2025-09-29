@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from ipywidgets import interact, widgets
 
 
 def plot_sensitivity_lsh():
@@ -61,3 +62,26 @@ def plot_sensitivity_lsh():
     plt.legend(loc="upper right")
     plt.tight_layout()
     plt.show()
+
+
+@interact(
+    r=widgets.IntSlider(min=1, max=10, step=1, value=3),
+    b=widgets.IntSlider(min=1, max=10, step=1, value=5),
+)
+def plot_bands_and_rows(r=3, b=5):
+    sim = np.arange(0, 1.01, 0.01)
+    p = 1 - (1 - sim ** r) ** b
+
+    plt.plot(sim, 1 - (1 - sim ** r) ** b, label="Selected")
+
+    if r != 1:
+        plt.plot(sim, 1 - (1 - sim ** (r - 1)) ** b, "-.", label=f"R={r - 1}, B={b}", color="yellow")
+    plt.plot(sim, 1 - (1 - sim ** (r + 1)) ** b, "--", label=f"R={r + 1}, B={b}", color="yellow")
+
+    if b != 1:
+        plt.plot(sim, 1 - (1 - sim ** (r)) ** (b - 1), "-.", label=f"R={r}, B={b - 1}", color="red")
+    plt.plot(sim, 1 - (1 - sim ** (r)) ** (b + 1), "--", label=f"R={r}, B={b + 1}", color="red")
+
+    plt.xlabel("Similarity")
+    plt.ylabel("P(candidancy)")
+    plt.legend()
