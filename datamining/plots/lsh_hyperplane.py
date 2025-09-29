@@ -209,16 +209,5 @@ def plot_hyperplane_step_6(angle=30):
                         np.sign(y) * 10, color='yellow' if i == 0 else 'cyan', alpha=0.3, zorder=-1)
 
 
-@interact(
-    step=widgets.ToggleButtons(
-        options=[1, 2, 3, 4, 5, 6],
-        description='Step:',
-        disabled=False,
-        button_style='', # 'success', 'info', 'warning', 'danger' or ''
-        # tooltips=['Description of slow', 'Description of regular', 'Description of fast'],
-        # icons=['check'] * 3
-    ),
-    angle=widgets.IntSlider(min=1, max=359, step=1, value=220),
-)
 def plot_hyperplane_example(step, angle):
     eval(f"plot_hyperplane_step_{step}({angle})")
