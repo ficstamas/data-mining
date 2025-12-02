@@ -14,7 +14,7 @@ def global_conv_history(A, max_iter):
     np.random.seed(42)
 
     # Generate 6 random row vectors from [0,1]
-    P = np.random.rand(6, 5)
+    P = np.random.rand(1, 5)
 
     # Normalize rows to become probability distributions
     P = P / P.sum(axis=1, keepdims=True)
