@@ -20,10 +20,10 @@ def global_conv_history(A, max_iter):
     P = P / P.sum(axis=1, keepdims=True)
 
     # Power iteration
-    P_hist = [P]
+    P_hist = [P[0]]
     for k in range(max_iter):
         P = P @ M
-        P_hist.append(P)
+        P_hist.append(P[0])
 
     return np.array(P_hist)
 
