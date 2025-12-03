@@ -13,8 +13,8 @@ def global_conv_history(A, max_iter):
     # Fix random seed
     np.random.seed(42)
 
-    # Generate 6 random row vectors from [0,1]
-    P = np.random.rand(1, 5)
+    # a random row vector from [0,1]
+    P = np.random.rand(1, A.shape[1])
 
     # Normalize rows to become probability distributions
     P = P / P.sum(axis=1, keepdims=True)
